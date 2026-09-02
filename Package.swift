@@ -1,4 +1,5 @@
-// swift-tools-version:5.9
+// swift-tools-version: 5.9
+
 import PackageDescription
 
 let package = Package(
@@ -7,10 +8,23 @@ let package = Package(
         .iOS(.v12)
     ],
     products: [
-        .library(name: "FSPagerView", targets: ["FSPagerView"]),
+        .library(
+            name: "FSPagerView",
+            targets: ["FSPagerView", "FSPagerViewObjcCompat"]
+        )
     ],
     targets: [
-        .target(name: "FSPagerView", path: "Sources", exclude: ["FSPagerViewObjcCompat.h", "FSPagerViewObjcCompat.m"]),
+        .target(
+            name: "FSPagerView",
+            path: "Sources",
+            exclude: ["FSPagerViewObjcCompat.h", "FSPagerViewObjcCompat.m"]
+        ),
+        .target(
+            name: "FSPagerViewObjcCompat",
+            path: "Sources",
+            sources: ["FSPagerViewObjcCompat.m"],
+            publicHeadersPath: "."
+        )
     ],
     swiftLanguageVersions: [.v5]
 )
